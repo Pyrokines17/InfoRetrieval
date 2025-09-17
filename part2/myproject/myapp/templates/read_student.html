@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Read Student</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Read Student</h1>
+    <table border="1" style="width: 50%; margin: auto; text-align: center;">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Middle Name</th>
+                <th>Birth Date</th>
+                <th>University</th>
+                <th>Study Start Date</th>
+                <th>Modify</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>{{ student.first_name }}</td>
+                <td>{{ student.last_name }}</td>
+                <td>{{ student.middle_name }}</td>
+                <td>{{ student.birth_date }}</td>
+                <td>{{ student.university }}</td>
+                <td>{{ student.study_start }}</td>
+                <td><a href="{% url 'modify_student' student.id %}">Modify</a></td>
+                <td><a href="{% url 'delete_student' student.id %}">Delete</a></td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9" style="text-align: center;">No students available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="{% url 'home' %}">Back to Home</a>
+    </div>
+</body>
+</html>
