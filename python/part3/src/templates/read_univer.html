@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Read University</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Read University</h1>
+
+    <table border="1" style="width: 50%; margin: auto; text-align: center;">
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Short Name</th>
+                <th>Creation Date</th>
+                <th>Modify</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for univer in univers %}
+            <tr>
+                <td>{{ univer[1] }}</td>
+                <td>{{ univer[2] }}</td>
+                <td>{{ univer[3] }}</td>
+                <td><a href="{{ url_for('modify_univer', univer_id=univer[0]) }}">Modify</a></td>
+                <td><a href="{{ url_for('delete_univer', univer_id=univer[0]) }}">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="{{ url_for('index') }}">Back to Home</a>
+    </div>
+</body>
+</html>
