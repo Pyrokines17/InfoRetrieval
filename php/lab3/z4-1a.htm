@@ -1,0 +1,25 @@
+<html lang="ru">
+<head>
+    <title>z4-1a</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h2>Выберите выравнивание текста в таблице</h2>
+    <form action="z4-1b.php" method="post">
+        <fieldset>
+            <legend>Горизонтальное выравнивание (align):</legend>
+            <label><input type="radio" name="align" value="left" checked> Слева</label><br>
+            <label><input type="radio" name="align" value="center"> По центру</label><br>
+            <label><input type="radio" name="align" value="right"> Справа</label>
+        </fieldset>
+        <fieldset>
+            <legend>Вертикальное выравнивание (valign):</legend>
+            <label><input type="checkbox" name="valign[]" value="top"> Сверху</label><br>
+            <label><input type="checkbox" name="valign[]" value="middle"> По центру</label><br>
+            <label><input type="checkbox" name="valign[]" value="bottom"> Снизу</label>
+        </fieldset>
+        <br>
+        <button type="submit">Выполнить</button>
+    </form>
+</body>
+</html>

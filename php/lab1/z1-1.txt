@@ -1,0 +1,154 @@
+#1
+select *
+from cust
+where snum = 1001;
+
+#2
+select sal.city, sal.sname, sal.snum, sal.comm
+from sal;
+
+#3
+select cust.cname, cust.rating
+from cust
+where city = 'San Jose';
+
+#4
+select distinct ord.snum
+from ord;
+
+#5
+select sal.sname, sal.city
+from sal
+where comm > 0.11;
+
+#6
+select *
+from cust
+where rating <= 200
+  and city != 'Rome';
+
+#7
+select *
+from ord
+where odate = '03-OCT-90'
+   or odate = '05-OCT-90';
+
+select *
+from ord
+where odate in ('03-OCT-90', '05-OCT-90');
+
+#8
+select *
+from cust
+where cname like 'A%'
+   or cname like 'B%'
+   or cname like 'C%'
+   or cname like 'D%'
+   or cname like 'E%'
+   or cname like 'F%'
+   or cname like 'G%';
+
+#9
+select *
+from sal
+where sname like '%e%';
+
+#10
+select sum(ord.amt)
+from ord
+where odate = '03-OCT-90';
+
+#11
+select sum(ord.amt)
+from ord
+where snum = 1001;
+
+#12
+select snum, max(amt)
+from ord
+group by snum;
+
+#13
+select *
+from cust
+where cname like '%s'
+order by cname
+LIMIT 1;
+
+#14
+select city, avg(comm)
+from sal
+group by city;
+
+#15
+select ord.onum, ord.amt * 0.8, sal.sname, sal.comm * ord.amt
+from ord
+         join sal on ord.snum = sal.snum
+where odate = '03-OCT-90';
+
+#16
+select ord.onum, sal.sname, cust.cname
+from ord
+         join sal on ord.snum = sal.snum
+         join cust on ord.cnum = cust.cnum
+where sal.city in ('London', 'Rome')
+order by ord.onum;
+
+#17
+select sal.sname, sum(ord.amt), sum(sal.comm*ord.amt)
+from ord
+         join sal on ord.snum = sal.snum
+where substring(ord.odate, 1, 2) <= '05'
+group by sal.sname
+order by sal.sname;
+
+#18
+select ord.onum, ord.amt, sal.sname, cust.cname
+from ord
+         join sal on ord.snum = sal.snum
+         join cust on ord.cnum = cust.cnum
+where (sal.city like 'L%' or sal.city like 'M%' or sal.city like 'N%' or sal.city like 'O%' or sal.city like 'P%' or sal.city like 'Q%' or sal.city like 'R%')
+  and (cust.city like 'L%' or cust.city like 'M%' or cust.city like 'N%' or cust.city like 'O%' or cust.city like 'P%' or cust.city like 'Q%' or cust.city like 'R%');
+
+#19
+select c1.cname as customer1, c2.cname as customer2, c1.snum as seller
+from cust c1
+         join cust c2 on c1.snum = c2.snum and c1.cnum < c2.cnum;
+
+#20
+select cname
+from cust
+where snum in (
+    select snum
+    from sal
+    where comm < 0.13
+);
+
+#21
+CREATE TABLE sal_copy AS SELECT * FROM SAMPLE.SAL;
+
+DESC sal;
+DESC sal_copy;
+
+SELECT * FROM sal;
+SELECT * FROM sal_copy;
+
+#22
+INSERT INTO sal (snum, sname, city, comm) VALUES (1010, 'Smith', 'Paris', 0.14);
+INSERT INTO sal (snum, sname, city, comm) VALUES (1011, 'Brown', 'Madrid', 0.13);
+
+SELECT * FROM sal;
+
+DELETE FROM sal WHERE snum = 1010;
+
+SELECT * FROM sal;
+
+#23
+INSERT INTO sal (snum, sname, city, comm) VALUES (1012, 'White', 'Berlin', 0.16);
+INSERT INTO sal (snum, sname, city, comm) VALUES (1013, 'Green', 'Paris', 0.12);
+
+SELECT * FROM sal;
+
+UPDATE sal SET comm = comm * 2;
+
+SELECT * FROM sal;
