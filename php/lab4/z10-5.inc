@@ -143,20 +143,20 @@ $structure = "";
 $content = "";
 
 if (isset($_GET['structure']) && is_array($_GET['structure']) && count($_GET['structure']) > 0) {
-    $structure = $_GET['structure'][0];
-
-    if (isset($structure) && $structure != "") {
-        vid_structure($structure);
+    foreach($_GET['structure'] as $str) {
+        if (isset($str) && $str != "") {
+            vid_structure($str);
+        }
     }
 } else {
     print("<h4>Нет данных для отображения структуры</h4>");
 }
 
 if (isset($_GET['content']) && is_array($_GET['content']) && count($_GET['content']) > 0) {
-    $content = $_GET['content'][0];
-
-    if (isset($content) && $content != "") {
-        vid_content($content);
+    foreach($_GET['content'] as $con) {
+        if (isset($con) && $con != "") {
+            vid_content($con);
+        }
     }
 } else {
     print("<h4>Нет данных для отображения содержимого</h4>");
