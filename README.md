@@ -1,2 +1,2 @@
-# InfoSearch
-Repository for info search tasks
+# InfoRetrieval
+Repository for "information retrieval" course
